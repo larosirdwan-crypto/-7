@@ -1,0 +1,679 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="ومضة: معلومات قصيرة وحقائق مدهشة في العلم والثقافة والتاريخ.">
+  <title>ومضة | معلومة تستحق وقتك</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #748096;
+      --accent: #635bff;
+      --border: #e8ebf2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    header {
+      background: #101827;
+      color: white;
+      padding: 18px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #a5a0ff;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: #d3d8e5;
+    }
+
+    nav a:hover {
+      color: #b6b1ff;
+    }
+
+    .hero {
+      padding: 65px 20px 55px;
+      text-align: center;
+      color: white;
+      background:
+        radial-gradient(ellipse at top left, #4640a8 0%, transparent 48%),
+        linear-gradient(135deg, #101827, #25224f);
+    }
+
+    .tag {
+      display: inline-block;
+      background: #ffffff18;
+      border: 1px solid #ffffff30;
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      margin-bottom: 20px;
+      color: #d9d6ff;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 49px);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: #b7b2ff;
+    }
+
+    .hero p {
+      color: #d0d4e3;
+      max-width: 560px;
+      margin: 0 auto 25px;
+      font-size: 15px;
+    }
+
+    .search {
+      width: min(100%, 480px);
+      display: flex;
+      gap: 8px;
+      margin: auto;
+      background: white;
+      padding: 6px;
+      border-radius: 14px;
+    }
+
+    .search input {
+      border: 0;
+      outline: 0;
+      min-width: 0;
+      flex: 1;
+      padding: 10px;
+      color: #172033;
+      background: transparent;
+    }
+
+    .search button {
+      border: 0;
+      background: var(--accent);
+      color: white;
+      border-radius: 10px;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+
+    main {
+      width: min(1100px, 90%);
+      margin: 35px auto 60px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-heading h2 {
+      font-size: 23px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 9px;
+      overflow-x: auto;
+      padding: 3px 0 18px;
+      margin-bottom: 10px;
+    }
+
+    .filter {
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      background: white;
+      color: #555f73;
+      border-radius: 30px;
+      padding: 8px 17px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .filter:hover,
+    .filter.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px #1924470d;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .emoji {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #f0efff;
+      font-size: 25px;
+    }
+
+    .category {
+      font-size: 11px;
+      color: var(--accent);
+      background: #f0efff;
+      padding: 5px 9px;
+      border-radius: 20px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
+
+    .card p {
+      color: #687388;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      background: none;
+      border: 0;
+    }
+
+    .daily {
+      margin-top: 40px;
+      padding: 28px;
+      border-radius: 20px;
+      background: linear-gradient(120deg, #e9e7ff, #f5f1ff);
+      border: 1px solid #e0ddff;
+    }
+
+    .daily small {
+      color: #635bff;
+      font-weight: bold;
+    }
+
+    .daily h2 {
+      font-size: 23px;
+      margin: 8px 0;
+    }
+
+    .daily p {
+      color: #555f73;
+      font-size: 14px;
+    }
+
+    .daily button {
+      margin-top: 15px;
+      padding: 10px 17px;
+      border: 0;
+      background: #635bff;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 35px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    footer {
+      background: #101827;
+      color: #cbd1df;
+      padding: 30px 6%;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+      font-size: 19px;
+    }
+
+    footer p {
+      margin-top: 8px;
+      color: #aab2c4;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      background: #101827bb;
+      padding: 20px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(500px, 100%);
+      background: white;
+      border-radius: 20px;
+      padding: 27px;
+      position: relative;
+    }
+
+    .close {
+      float: left;
+      border: 0;
+      background: #f0f1f6;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .modal-content h2 {
+      margin: 15px 0;
+    }
+
+    .modal-content p {
+      color: #586278;
+      line-height: 2.1;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      header {
+        padding: 15px 5%;
+      }
+
+      nav {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .hero {
+        padding: 48px 18px;
+      }
+
+      main {
+        width: 92%;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 19px;
+      }
+
+      .section-heading h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="#" class="logo">ومضة<span>.</span></a>
+
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#facts">المعلومات</a>
+      <a href="#daily">معلومة اليوم</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <span class="tag">معرفة في دقائق</span>
+    <h1>كل يوم، اكتشف <span>شيئاً جديداً</span></h1>
+    <p>
+      معلومات قصيرة، حقائق مدهشة، وأفكار توسّع نظرتك إلى العالم.
+      لأن المعرفة لا تحتاج دائماً إلى ساعات طويلة.
+    </p>
+
+    <form class="search" id="searchForm">
+      <input id="searchInput" type="search"
+        placeholder="ابحث عن معلومة..." aria-label="ابحث عن معلومة">
+      <button type="submit">ابحث</button>
+    </form>
+  </section>
+
+  <main>
+    <section id="facts">
+      <div class="section-heading">
+        <div>
+          <h2>اكتشف شيئاً جديداً</h2>
+          <p>اختر المجال الذي يثير فضولك.</p>
+        </div>
+      </div>
+
+      <div class="filters">
+        <button class="filter active" data-category="الكل">الكل</button>
+        <button class="filter" data-category="العلوم">🔬 العلوم</button>
+        <button class="filter" data-category="التاريخ">🏛️ التاريخ</button>
+        <button class="filter" data-category="الجغرافيا">🌍 الجغرافيا</button>
+        <button class="filter" data-category="الثقافة">📚 الثقافة</button>
+      </div>
+
+      <div class="grid" id="cards">
+        <article class="card" data-category="العلوم"
+          data-title="الأخطبوط" data-search="الأخطبوط حيوان بحري أذرع ذكاء">
+          <div class="card-top">
+            <div class="emoji">🐙</div>
+            <span class="category">العلوم</span>
+          </div>
+          <h3>هل تعلم أن للأخطبوط ثلاثة قلوب؟</h3>
+          <p>يمتلك الأخطبوط ثلاثة قلوب، ويساعده دمه الغني بالنحاس على نقل الأكسجين في جسمه.</p>
+          <button class="read-more" data-fact="octopus">اكتشف المزيد ←</button>
+        </article>
+
+        <article class="card" data-category="الجغرافيا"
+          data-title="المحيط الهادئ" data-search="المحيط الهادئ أكبر محيط مساحة">
+          <div class="card-top">
+            <div class="emoji">🌊</div>
+            <span class="category">الجغرافيا</span>
+          </div>
+          <h3>أكبر محيط على كوكبنا</h3>
+          <p>المحيط الهادئ هو أكبر محيط في العالم، ويمتد بين آسيا وأستراليا والأمريكيتين.</p>
+          <button class="read-more" data-fact="pacific">اكتشف المزيد ←</button>
+        </article>
+
+        <article class="card" data-category="التاريخ"
+          data-title="الورق" data-search="الورق الصين التاريخ اختراع">
+          <div class="card-top">
+            <div class="emoji">📜</div>
+            <span class="category">التاريخ</span>
+          </div>
+          <h3>من أين جاء الورق؟</h3>
+          <p>تطورت صناعة الورق في الصين القديمة، وأسهم انتشارها في انتقال المعرفة بين الشعوب.</p>
+          <button class="read-more" data-fact="paper">اكتشف المزيد ←</button>
+        </article>
+
+        <article class="card" data-category="العلوم"
+          data-title="ضوء الشمس" data-search="الشمس الضوء ثماني دقائق الأرض">
+          <div class="card-top">
+            <div class="emoji">☀️</div>
+            <span class="category">العلوم</span>
+          </div>
+          <h3>رحلة ضوء الشمس إلينا</h3>
+          <p>يحتاج ضوء الشمس إلى نحو 8 دقائق و20 ثانية ليصل إلى الأرض.</p>
+          <button class="read-more" data-fact="sun">اكتشف المزيد ←</button>
+        </article>
+
+        <article class="card" data-category="الجغرافيا"
+          data-title="القارة القطبية الجنوبية" data-search="القارة القطبية الجنوبية جليد ماء">
+          <div class="card-top">
+            <div class="emoji">🧊</div>
+            <span class="category">الجغرافيا</span>
+          </div>
+          <h3>قارة يغطيها الجليد</h3>
+          <p>تُعد القارة القطبية الجنوبية أبرد قارات العالم، ويغطي الجليد معظم مساحتها.</p>
+          <button class="read-more" data-fact="antarctica">اكتشف المزيد ←</button>
+        </article>
+
+        <article class="card" data-category="الثقافة"
+          data-title="اللغة" data-search="اللغة ثقافة تواصل الإنسان">
+          <div class="card-top">
+            <div class="emoji">🗣️</div>
+            <span class="category">الثقافة</span>
+          </div>
+          <h3>اللغة أكثر من كلمات</h3>
+          <p>تحمل اللغات تعابير وذكريات ومعارف تساعد المجتمعات على نقل ثقافتها بين الأجيال.</p>
+          <button class="read-more" data-fact="language">اكتشف المزيد ←</button>
+        </article>
+
+        <div class="empty" id="empty">
+          لم نعثر على نتائج. جرّب كلمة أخرى.
+        </div>
+      </div>
+    </section>
+
+    <section class="daily" id="daily">
+      <small>✦ لحظة معرفة</small>
+      <h2 id="dailyTitle">هل تعرف لماذا تبدو السماء زرقاء؟</h2>
+      <p id="dailyText">
+        لأن الغلاف الجوي يشتت الضوء الأزرق القادم من الشمس أكثر من ألوان أخرى.
+      </p>
+      <button id="newFact">أعطني معلومة أخرى ↻</button>
+    </section>
+  </main>
+
+  <footer>
+    <strong>ومضة.</strong>
+    <p>معرفة صغيرة، وأفق أوسع.</p>
+    <p>© <span id="year"></span> ومضة — جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <div class="modal" id="modal" role="dialog"
+    aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-content">
+      <button class="close" id="closeModal" aria-label="إغلاق">×</button>
+      <div class="emoji" id="modalEmoji">💡</div>
+      <h2 id="modalTitle">عنوان المعلومة</h2>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const cards = [...document.querySelectorAll(".card")];
+    const searchInput = document.getElementById("searchInput");
+    const empty = document.getElementById("empty");
+    let currentCategory = "الكل";
+
+    function filterCards() {
+      const query = searchInput.value.trim().toLowerCase();
+      let count = 0;
+
+      cards.forEach(card => {
+        const category = card.dataset.category;
+        const words = (
+          card.dataset.title + " " +
+          card.dataset.search + " " +
+          card.innerText
+        ).toLowerCase();
+
+        const matchesCategory =
+          currentCategory === "الكل" || category === currentCategory;
+        const matchesSearch = words.includes(query);
+        const visible = matchesCategory && matchesSearch;
+
+        card.style.display = visible ? "" : "none";
+        if (visible) count++;
+      });
+
+      empty.style.display = count === 0 ? "block" : "none";
+    }
+
+    filters.forEach(button => {
+      button.addEventListener("click", () => {
+        filters.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        currentCategory = button.dataset.category;
+        filterCards();
+      });
+    });
+
+    document.getElementById("searchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      filterCards();
+      document.getElementById("facts").scrollIntoView({ behavior: "smooth" });
+    });
+
+    searchInput.addEventListener("input", filterCards);
+
+    const details = {
+      octopus: {
+        emoji: "🐙",
+        title: "قلوب متعددة وذكاء مدهش",
+        text: "للأخطبوط ثلاثة قلوب: اثنان يضخان الدم نحو الخياشيم، والثالث يضخه إلى بقية الجسم. كما أنه من اللافقاريات المعروفة بقدراتها على حل بعض المشكلات."
+      },
+      pacific: {
+        emoji: "🌊",
+        title: "المحيط الهادئ",
+        text: "هو أكبر محيط على الأرض، وتبلغ مساحته نحو 165 مليون كيلومتر مربع، مع اختلاف التقديرات بحسب حدود المحيط المعتمدة."
+      },
+      paper: {
+        emoji: "📜",
+        title: "قصة الورق",
+        text: "ترتبط صناعة الورق التقليدية بالصين القديمة. وتُنسب إلى تساي لون، نحو سنة 105 ميلادية، عملية تطوير مهمة في صناعة الورق."
+      },
+      sun: {
+        emoji: "☀️",
+        title: "ضوء الشمس",
+        text: "يقطع الضوء مسافة تقارب 150 مليون كيلومتر بين الشمس والأرض، ويستغرق ذلك نحو 8 دقائق و20 ثانية."
+      },
+      antarctica: {
+        emoji: "🧊",
+        title: "القارة القطبية الجنوبية",
+        text: "تضم القارة القطبية الجنوبية معظم جليد الأرض تقريباً، وتحتوي على نسبة كبيرة جداً من المياه العذبة المخزنة على شكل جليد."
+      },
+      language: {
+        emoji: "🗣️",
+        title: "اللغة والذاكرة",
+        text: "تساعد اللغة الناس على مشاركة الأفكار والمعارف والتجارب، كما تحمل كثير من الكلمات والتعابير آثاراً من تاريخ المجتمعات وثقافاتها."
+      }
+    };
+
+    document.querySelectorAll(".read-more").forEach(button => {
+      button.addEventListener("click", () => {
+        const fact = details[button.dataset.fact];
+        document.getElementById("modalEmoji").textContent = fact.emoji;
+        document.getElementById("modalTitle").textContent = fact.title;
+        document.getElementById("modalText").textContent = fact.text;
+        document.getElementById("modal").classList.add("open");
+      });
+    });
+
+    function closeModal() {
+      document.getElementById("modal").classList.remove("open");
+    }
+
+    document.getElementById("closeModal").addEventListener("click", closeModal);
+    document.getElementById("modal").addEventListener("click", event => {
+      if (event.target.id === "modal") closeModal();
+    });
+
+    const dailyFacts = [
+      {
+        title: "هل تعرف لماذا تبدو السماء زرقاء؟",
+        text: "لأن الغلاف الجوي يشتت الضوء الأزرق القادم من الشمس أكثر من ألوان أخرى."
+      },
+      {
+        title: "هل تعرف أن النحل يتواصل بالرقص؟",
+        text: "تستخدم بعض أنواع نحل العسل حركات تشبه الرقص لنقل معلومات عن موقع مصادر الغذاء."
+      },
+      {
+        title: "هل تعرف أن الأرض ليست كرة كاملة؟",
+        text: "الأرض مفلطحة قليلاً عند القطبين ومنتفخة قرب خط الاستواء بسبب دورانها."
+      },
+      {
+        title: "هل تعرف أن بعض الأشجار تعيش آلاف السنين؟",
+        text: "توجد أنواع من الأشجار المعمرة التي يمكن أن تعيش آلاف السنين في ظروف مناسبة."
+      },
+      {
+        title: "هل تعرف أن المحيطات تؤثر في المناخ؟",
+        text: "تخزن المحيطات الحرارة وتنقلها عبر التيارات البحرية، مما يؤثر في مناخ مناطق واسعة."
+      }
+    ];
+
+    let lastFact = 0;
+
+    document.getElementById("newFact").addEventListener("click", () => {
+      let index;
+      do {
+        index = Math.floor(Math.random() * dailyFacts.length);
+      } while (index === lastFact && dailyFacts.length > 1);
+
+      lastFact = index;
+      document.getElementById("dailyTitle").textContent =
+        dailyFacts[index].title;
+      document.getElementById("dailyText").textContent =
+        dailyFacts[index].text;
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+  </html>
